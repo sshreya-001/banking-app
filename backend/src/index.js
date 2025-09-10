@@ -73,7 +73,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import { typeDefs, resolvers } from "./graphql/schema.js";
 import { authMiddleware } from './middleware/auth.js';
-
+import accountRoutes from "./routes/accountRoutes.js";
 // Load environment variables
 dotenv.config();
 
@@ -92,7 +92,7 @@ const server = new ApolloServer({
 const startServer = async () => {
     // Start Apollo Server
     await server.start();
-
+app.use("/api/accounts", accountRoutes);
     // Integrate Apollo Server with Express
     app.use(
         '/graphql',
